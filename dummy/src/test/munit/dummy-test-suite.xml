@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="dummy-test-suite.xml" />
+	<munit:test name="dummy-test-suite-dummyFlowTest" doc:id="cb02c4f2-4a33-455c-ba63-6b93a121cfa8" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to dummyFlow" doc:id="10627bb0-3949-4f97-a0f5-280e935e2ced" name="dummyFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="94245796-d8b1-42ce-a80f-b65db6232b39" actual="#[payload]" expected='#["Hello Sandeep!"]' message="#[&quot;payload doesn't match with expected&quot;]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="dummy-test-suite-dummyFlowTest1" doc:id="344eeb42-8bb6-4ab0-91df-9b5fc216dfa6" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to dummyFlow" doc:id="bf79b281-912c-4f29-81b3-f48c02b4ba16" name="dummyFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="cf2bf9f5-e06f-4f75-a7d3-b673e8c22096" message="#[&quot;payload doesn't start with Hello&quot;]" expression="#[payload]" is="#[MunitTools::startsWith('Hello')]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="dummy-test-suite-dummyFlowTest2" doc:id="fca5500a-ba55-4c58-9055-661d4c0fa9ff" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to dummyFlow" doc:id="9cbd9036-e69b-4868-a3c6-b01df8891830" name="dummyFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="7d00f7ba-526f-4ada-a2ee-63ab5cfa615c" message="#[&quot;Payload doesn't end with Sandeep!&quot;]" expression="#[payload]" is="#[MunitTools::endsWith('Sandeep!')]"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
